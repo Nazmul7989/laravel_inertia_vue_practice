@@ -16,4 +16,9 @@ class HomeController extends Controller
     {
         return Inertia::render('About');
     }
+
+    public function login()
+    {
+        return Inertia::render('Login');
+    }
 }
