@@ -2,8 +2,13 @@
     <br>
     <div class="container">
         <div class="row">
+            <div class="col-12 d-flex justify-content-between mb-2">
+                <h1 class="text-xl">Post Lists</h1>
+                <button @click.prevent="goToCreatePage" class="btn btn-info">Create Post</button>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-success mb-3">Post List</h1>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -25,12 +30,26 @@
                     </tr>
                     </tbody>
                 </table>
+
+            </div>
+            <div class="col-12">
+                <div class="d-flex justify-content-end">
+                    <Pagination/>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+
+import Pagination from "@/Components/Pagination.vue";
+import { router} from "@inertiajs/vue3";
+
 defineProps(['posts'])
+
+const goToCreatePage = ()=>{
+    router.visit('/create');
+}
 
 </script>

@@ -21,6 +21,10 @@ class HomeController extends Controller
     {
         return Inertia::render('About');
     }
+    public function create()
+        {
+            return Inertia::render('Create');
+        }
 
     public function login()
     {
