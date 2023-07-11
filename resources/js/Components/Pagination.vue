@@ -2,22 +2,37 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
+                <Link  class="page-link"
+                       :href="prev?? '' "
+                       aria-label="Previous"
+                       :disabled="prev === null ? 'true' : 'false' "
+                >
                     <span aria-hidden="true">&laquo;</span>
-                </a>
+                </Link>
             </li>
-            <li class="page-item active"><a class="page-link " href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li v-for="(page, index) in totalPages" :key="index"
+                :class=" page === current ? 'page-item active' : 'page-item'">
+                <Link class="page-link "
+                      :href="path+'?page='+page">
+                    {{ page }}
+                </Link>
+            </li>
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
+                <Link class="page-link"
+                      :href="next?? '' "
+                      aria-label="Next"
+                      :disabled="next === null ? 'true' : 'false' "
+                >
                     <span aria-hidden="true">&raquo;</span>
-                </a>
+                </Link>
             </li>
         </ul>
     </nav>
 </template>
 
 <script setup>
+import {Link} from "@inertiajs/vue3";
+
+defineProps(['next','prev','totalPages','current','path'])
 
 </script>

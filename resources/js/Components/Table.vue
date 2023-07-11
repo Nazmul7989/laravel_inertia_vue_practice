@@ -19,7 +19,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="post in posts" :key="post.id">
+                    <tr v-for="post in posts.data" :key="post.id">
                         <td>{{ post.id }}</td>
                         <td>{{ post.title }}</td>
                         <td>{{ post.description }}</td>
@@ -34,7 +34,13 @@
             </div>
             <div class="col-12">
                 <div class="d-flex justify-content-end">
-                    <Pagination/>
+                    <Pagination
+                        :next="posts.next_page_url"
+                        :prev="posts.prev_page_url"
+                        :totalPages="posts.last_page"
+                        :current="posts.current_page"
+                        :path="posts.path"
+                    />
                 </div>
             </div>
         </div>
