@@ -1,12 +1,7 @@
 
 <template>
 
-    <br>
-    <div>Home Page</div>
-    <br>
-    <button @click.prevent="count--">-</button>
-    <span>{{ count}}</span>
-    <button @click.prevent="count++">+</button>
+   <Table :posts="posts"/>
 
 </template>
 
@@ -21,9 +16,9 @@ export default {
 
 <script setup>
 
-import {ref} from "vue";
+import Table from '@/Components/Table.vue'
 
-const count = ref(0);
+defineProps(['posts'])
 
 </script>
 

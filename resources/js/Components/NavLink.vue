@@ -1,7 +1,7 @@
 <template>
 
     <Link
-        :class="$page.component === component && 'active' "
+        :class="$page.component === component ? 'active' : 'normal' "
         :href="href"
         preserve-scroll
     >
@@ -21,11 +21,13 @@ defineProps(['name','component','href'])
 </script>
 
 <style scoped>
+.normal{
+    color: #ffffff;
+}
 .active{
     color: red;
     font-weight: 600;
     text-decoration: none;
-    font-size: 20px;
 }
 
 </style>

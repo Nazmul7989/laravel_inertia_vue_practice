@@ -1,6 +1,6 @@
 <template>
     <br>
-    <div>About page</div>
+    <div class="text-blue-400">About page</div>
 </template>
 
 
