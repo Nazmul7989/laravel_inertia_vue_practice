@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -38,9 +39,10 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'user' => auth()->user() ?? '',
-            'flash' => [
-                'message' => fn () => $request->session(['info','success','error','warning'])->get('message')
-            ],
+            'notification' => collect(Arr::only($request->session()->all(), ['success', 'error', 'waring', 'info']))
+                ->mapWithKeys(function ($notification, $key) {
+                    return ['type' => $key, 'body' => $notification];
+                }),
         ]);
     }
 }

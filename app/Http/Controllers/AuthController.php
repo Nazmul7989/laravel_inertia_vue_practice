@@ -24,9 +24,9 @@ class AuthController extends Controller
         $credentials = $request->only(['email','password']);
 
         if (Auth::attempt($credentials)) {
-            return to_route('home.index');
+            return to_route('home.index')->with('success','Login Successfully!');
         }else{
-            return to_route('login');
+            return to_route('login')->with('error','Opps! Login Failed.');
         }
 
 
@@ -35,6 +35,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return to_route('login');
+        return to_route('login')->with('success','Logout Successfully!');
     }
 }
