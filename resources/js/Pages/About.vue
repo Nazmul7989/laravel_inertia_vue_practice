@@ -1,10 +1,12 @@
 <template>
+    <Head title="About"/>
     <br>
     <div class="text-blue-400">About page</div>
 </template>
 
 
-<script>
+<script setup>
+import { Head } from "@inertiajs/vue3";
 
 </script>
 

@@ -1,5 +1,7 @@
 
 <template>
+    <Head title="Login"/>
+
     <br>
     <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -44,11 +46,14 @@
 
 
 
-<script>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-export default {
-    layout: GuestLayout,
-}
+<script setup>
+// import GuestLayout from '@/Layouts/GuestLayout.vue';
+import { Head } from "@inertiajs/vue3";
+
+
+// export default {
+//     layout: GuestLayout,
+// }
 
 </script>
 
