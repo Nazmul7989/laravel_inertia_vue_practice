@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login()
+    {
+        return Inertia::render('Login');
+    }
+
+    public function loginStore(Request $request)
     {
 
         $request->validate([
@@ -20,7 +26,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return to_route('home.index');
         }else{
-            return to_route('home.login');
+            return to_route('login');
         }
 
 
@@ -29,6 +35,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return to_route('home.login');
+        return to_route('login');
     }
 }

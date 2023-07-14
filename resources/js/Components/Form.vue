@@ -4,24 +4,21 @@
             <div class="col-md-6">
                <div class="card shadow px-4 py-4">
                    <div class="d-flex justify-content-between">
-                       <h3>Create New</h3>
+                       <h3>Create New Post</h3>
                        <Link href="/" class="btn btn-info"> Back</Link>
                    </div>
-                   <form>
+                   <form @submit.prevent="submit()">
                        <div class="mb-3">
-                           <label for="exampleInputEmail1" class="form-label">Email address</label>
-                           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                           <label for="title" class="form-label">Title</label>
+                           <input type="text" v-model="form.title" class="form-control" id="title" >
+                           <small class="text-danger" v-if="form.errors.title">{{ form.errors.title }}</small>
                        </div>
                        <div class="mb-3">
-                           <label for="exampleInputPassword1" class="form-label">Password</label>
-                           <input type="password" class="form-control" id="exampleInputPassword1">
+                           <label for="description" class="form-label">Description</label>
+                           <textarea id="description" v-model="form.description" cols="30" rows="5" class="form-control"></textarea>
+                           <small class="text-danger" v-if="form.errors.description">{{ form.errors.description }}</small>
                        </div>
-                       <div class="mb-3 form-check">
-                           <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                           <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                       </div>
-                       <button type="submit" class="btn btn-info">Submit</button>
+                       <button type="submit" :disabled="form.processing" class="btn btn-info">Save</button>
                    </form>
                </div>
             </div>
@@ -30,5 +27,20 @@
 </template>
 
 <script setup>
-import {Link} from "@inertiajs/vue3";
+import {Link, useForm} from "@inertiajs/vue3";
+
+const form = useForm({
+    title: '',
+    description: ''
+})
+
+const submit = ()=>{
+    form.post('/post/store',{
+        preserveScroll: true,
+        onSuccess: ()=>{
+            form.reset();
+        }
+    })
+}
+
 </script>

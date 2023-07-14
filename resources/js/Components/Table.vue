@@ -55,7 +55,7 @@ import { router} from "@inertiajs/vue3";
 defineProps(['posts'])
 
 const goToCreatePage = ()=>{
-    router.visit('/create');
+    router.visit('/post/create');
 }
 
 </script>

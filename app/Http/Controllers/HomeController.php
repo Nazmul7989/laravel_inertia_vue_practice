@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::take(10)->paginate(10);
+        $posts = Post::latest()->take(10)->paginate(10);
 
         return Inertia::render('Home',[
             'posts' => $posts
@@ -21,13 +21,6 @@ class HomeController extends Controller
     {
         return Inertia::render('About');
     }
-    public function create()
-        {
-            return Inertia::render('Create');
-        }
 
-    public function login()
-    {
-        return Inertia::render('Login');
-    }
+
 }
