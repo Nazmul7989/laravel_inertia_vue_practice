@@ -28,6 +28,9 @@
 
 <script setup>
 import {Link, useForm} from "@inertiajs/vue3";
+import {useToast} from "vue-toastification";
+
+const toast = useToast();
 
 const form = useForm({
     title: '',
@@ -39,6 +42,7 @@ const submit = ()=>{
         preserveScroll: true,
         onSuccess: ()=>{
             form.reset();
+            toast.success('Post Created Successfully!')
         }
     })
 }

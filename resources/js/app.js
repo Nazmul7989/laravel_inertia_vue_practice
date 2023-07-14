@@ -2,6 +2,8 @@ import './bootstrap';
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import Layout from "@/Layouts/Layout.vue";
+import Toast, { POSITION } from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 createInertiaApp({
     title: title => title === "" ? 'Laravel Inertia Vue' :  'Laravel Inertia Vue | ' + title,
@@ -14,6 +16,9 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(Toast,{
+                position: POSITION.TOP_RIGHT
+            })
             .mount(el)
     },
     progress: {
