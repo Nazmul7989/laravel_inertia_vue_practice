@@ -33,7 +33,7 @@
                     </button>
 
                     <!-- Profile dropdown -->
-                    <Menu as="div" class="relative ml-3">
+                    <Menu v-if="$page.props.user" as="div" class="relative ml-3">
                         <div>
                             <MenuButton class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
@@ -48,11 +48,17 @@
                                     <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings</a>
                                 </MenuItem>
                                 <MenuItem v-slot="{ active }">
-                                    <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
+                                    <Link href="/logout" as="button" method="post" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</Link>
                                 </MenuItem>
                             </MenuItems>
                         </transition>
                     </Menu>
+                    <NavLink v-else
+                        name="Login"
+                        component="Login"
+                        href="/login"
+                    >
+                    </NavLink>
                 </div>
             </div>
         </div>
@@ -76,10 +82,11 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import NavLink from "@/Components/NavLink.vue";
+import { Link } from "@inertiajs/vue3";
 
 const navigation = [
     { name: 'Home', component: 'Home', href: '/'},
     { name: 'About', component: 'About', href: '/about'},
-    { name: 'Login', component: 'Login', href: '/login'},
 ]
+
 </script>
